@@ -190,7 +190,8 @@
     <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-olive-bg">
         <div class="relative bg-white p-8 rounded-2xl shadow-xl w-full max-w-sm animate-fade-in-up border border-gray-100">
             <div class="text-center mb-8">
-                <h1 class="text-2xl font-bold text-olive-main">Portal SMM & SJPH</h1>
+                <h1 class="text-2xl font-bold text-olive-main">e-Sistem Manajemen</h1>
+                <p class="text-gray-500 text-xs mt-2">Sistem Manajemen Mutu & Jaminan Produk Halal</p>
             </div>
             <form id="login-form" class="space-y-5" onsubmit="return false;">
                 <div>
@@ -202,10 +203,10 @@
                 </div>
                 <button type="button" id="login-btn" onclick="handleLogin()" class="w-full bg-olive-main hover:bg-olive-dark text-white font-semibold py-3 px-4 rounded-lg transition duration-300 shadow-md flex justify-center items-center gap-2 text-sm">
                     <i class="fa-solid fa-right-to-bracket"></i>
-                    <span>Masuk ke Portal</span>
+                    <span>Masuk ke Sistem</span>
                 </button>
             </form>
-            <p class="text-center text-xs text-gray-400 mt-6">© 2025 Sistem Manajemen Mutu & Sistem Jaminan Produk Halal</p>
+            <p class="text-center text-xs text-gray-400 mt-6">© 2025 e-SMM ISO 9001 & SJPH</p>
         </div>
     </div>
 
@@ -217,7 +218,7 @@
         <aside class="w-64 bg-olive-main text-white flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 shadow-xl z-50" id="sidebar">
             <div class="p-5 flex items-center justify-between border-b border-white/10 flex-shrink-0 h-16">
                 <div class="flex items-center gap-3">
-                    <h2 class="font-bold text-sm">Portal SMM & SJPH</h2>
+                    <h2 class="font-bold text-sm">e-Sistem Manajemen</h2>
                 </div>
                 <button id="close-sidebar-btn" class="md:hidden text-gray-300 hover:text-white p-1">
                     <i class="fa-solid fa-xmark text-xl"></i>
@@ -374,92 +375,6 @@
         </div>
     </div>
 
-    <!-- TELEGRAM SETTINGS MODAL -->
-    <div id="wa-settings-modal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg flex flex-col animate-fade-in-up">
-            <div class="flex justify-between items-center p-5 border-b border-gray-100 flex-shrink-0 bg-gradient-to-r from-green-500 to-emerald-600 rounded-t-2xl">
-                <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    Pengaturan Notifikasi Telegram
-                </h3>
-                <button onclick="closeWASettingsModal()" class="text-white/80 hover:text-white transition p-1">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-            <div class="p-5 space-y-4 max-h-[70vh] overflow-y-auto">
-                <!-- Gateway Info -->
-                <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                    <p class="text-xs font-medium text-blue-800 flex items-center gap-2 mb-2">
-                        <i class="fa-solid fa-circle-info"></i> Informasi Telegram Bot
-                    </p>
-                    <p class="text-[11px] text-blue-700">
-                        Sistem notifikasi sekarang menggunakan <strong>Telegram Bot API</strong>. Masukkan <strong>Bot Token</strong> dari @BotFather dan <strong>Chat ID</strong> tujuan (bisa lebih dari satu).
-                    </p>
-                </div>
-
-                <!-- Telegram API URL (opsional) -->
-                <div>
-                    <label class="block text-xs font-medium text-gray-700 mb-1.5">
-                        Telegram API URL (opsional)
-                    </label>
-                    <input type="url" id="wa-webhook-url" placeholder="Kosongkan untuk gunakan Bot Token" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg outline-none text-xs focus:ring-2 focus:ring-green-300 transition">
-                    <p class="text-[10px] text-gray-400 mt-1">Contoh (jika diisi): https://api.telegram.org/bot<token>/sendMessage</p>
-                </div>
-
-                <!-- Bot Token -->
-                <div>
-                    <label class="block text-xs font-medium text-gray-700 mb-1.5">
-                        Bot Token Telegram <span class="text-red-500">*</span>
-                    </label>
-                    <input type="password" id="wa-api-token" placeholder="Masukkan Bot Token dari @BotFather" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg outline-none text-xs focus:ring-2 focus:ring-green-300 transition">
-                </div>
-
-                <!-- Recipients List -->
-                <div>
-                    <label class="block text-xs font-medium text-gray-700 mb-1.5">
-                        Daftar Chat ID Penerima <span class="text-red-500">*</span>
-                    </label>
-                    <textarea id="wa-recipients" rows="4" placeholder="Masukkan Chat ID Telegram (satu per baris):&#10;123456789&#10;987654321" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg outline-none text-xs focus:ring-2 focus:ring-green-300 transition font-mono">123456789</textarea>
-                    <p class="text-[10px] text-gray-400 mt-1">Format: angka Chat ID dari @userinfobot atau hasil getUpdates</p>
-                </div>
-
-                <!-- Notification Schedule -->
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-medium text-gray-700 mb-1.5">Jadwal Harian</label>
-                        <input type="time" id="wa-schedule-time" value="07:00" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg outline-none text-xs focus:ring-2 focus:ring-green-300 transition">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-700 mb-1.5">Status</label>
-                        <select id="wa-enabled" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-white outline-none text-xs focus:ring-2 focus:ring-green-300 transition">
-                            <option value="true">Aktif</option>
-                            <option value="false">Nonaktif</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Test Section -->
-                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <h4 class="text-xs font-bold text-gray-700 mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-vial text-gray-500"></i> Test Kirim Pesan Telegram
-                    </h4>
-                    <div class="flex gap-2">
-                        <input type="tel" id="wa-test-number" placeholder="123456789 (Chat ID)" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg outline-none text-xs focus:ring-2 focus:ring-green-300 transition font-mono">
-                        <button onclick="testWASend()" class="px-4 py-2 bg-green-600 text-white rounded-lg text-xs font-medium hover:bg-green-700 transition flex items-center gap-1.5">
-                            <i class="fa-solid fa-paper-plane"></i> Test
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="p-5 border-t border-gray-100 bg-gray-50 rounded-b-2xl flex justify-end gap-3 flex-shrink-0">
-                <button type="button" onclick="closeWASettingsModal()" class="px-5 py-2.5 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition text-xs font-medium">Batal</button>
-                <button type="button" onclick="saveWASettings()" class="px-5 py-2.5 rounded-lg bg-green-600 hover:bg-green-700 text-white shadow-md transition text-xs font-medium flex items-center gap-2">
-                    <i class="fa-solid fa-save"></i> Simpan Pengaturan
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- REVIEW STATUS MODAL (untuk Review Mundur/Rollback) -->
     <div id="review-modal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md flex flex-col animate-fade-in-up">
@@ -568,7 +483,7 @@
         // GLOBAL VARIABLES & CONSTANTS
         // ============================================
         
-        const DIVISIONS = ["MR", "Div. PPSDM", "Div. PPSDM Distrik", "Div. TIK", "Div. TIK Distrik", "Div. IPU", "Div. IPU Distrik", "Div. Pembelian", "Div. Pembelian Distrik", "Div. PPP", "Div. PPP Distrik", "Div. PKP", "Div. Pengembangan Usaha", "Bag. Std Lit", "Bag. Pemasaran Kreatif", "Bag. Program Komputer", "MM RS Mayapada Tangerang", "MM RS Carolus Sumarecon", "MM RS EMC Alam Sutera", "MM Bandara Soetta T 1B Keberangkatan", "MM Bandara Soetta T 2E Keberangkatan", "MM Bandara Soetta T 2F Keberangkatan", "MM Bandara Soetta T 3Int Kedatangan", "MM RS Siloam Cikarang", "MM RS EMC Sentul", "MM Green Terrace TMII", "MM Villagio Sumarecon Karawang", "MM RS Premier Bintaro", "MM RS Mayapada Kuningan", "MM Plaza Bintaro", "MM HO Fatmawati", "MM Cikajang", "MM Hypermart Taman Yasmin", "MM RSUP Fatmawati", "MM Bandara Soetta T 1A Keberangkatan", "MM Bandara Soetta T 1C Keberangkatan", "PK Bandara Soetta T 1C Keberangkatan", "MM Bandara Soetta T 3 Gate 3 Kedatangan", "MM Bandara Soetta T 3 Gate 14 Keberangkatan", "MM Melawai", "MM RS Pusat Pertamina", "MM RS Hermina Kemayoran", "MM RS EKA MT. Haryono", "MM RSPAD Gatot Soebroto", "MM RS PAntai Indah Kapuk", "MM Pandansari", "MM RS Mayapada Jaksel", "PK RS Mayapada Jaksel", "MM RS EMC Pekayon", "MM RS Mayapada Jaktim", "MM RS Hasan Sadikin Bandung", "MM RS Mayapda Bandung", "MM Paris Van Java", "MM Sumarecon Mal Bandung", "MM Paskal 23 Bandung", "MM Living World Bali", "PK Living World Bali", "MM Gatot Soebroto", "MM RSUP Prof. Dr. I.G.N.G. Ngoerah", "MM RS Kasih Ibu", "MM Lippo Plaza Sunset", "MM Icon Bali", "PK Icon Bali", "MM Mal Bali Galeria", "PK Mal Bali Galeria", "MM Lippo Mal Kuta", "MM Plaza Renon", "MM Beachwalk", "PK Beachwalk", "MM Teuku Umar", "MM Mega Mas Manado", "MM Manado Town Square", "MM Grand City Surabaya", "MM Bandara Juanda", "MM RS Mayapada Surabaya", "MM RS Mitra Keluarga Waru", "MM RS Husada Utama", "MM RS Mitra Keluarga Sidoarjo", "MM RS Mitra Keluarga Darmo Satelit", "MM Bandar Udara Sultan Hasanudin Kedatangan", "MM Bandar Udara Sultan Hasanudin Keberangkatan", "MM RS Mayapada Nusantara"];
+        const DIVISIONS = ["MR", "Div. PPSDM", "Div. PPSDM Distrik", "Div. TIK", "Div. TIK Distrik", "Div. IPU", "Div. IPU Distrik", "Div. Pembelian", "Div. Pembelian Distrik", "Div. PPP", "Div. PPP Distrik", "Div. Operasi & Pengawasan", "Div. PKP", "Div. Pengembangan Usaha", "Bag. Std Lit", "Bag. Pemasaran Kreatif", "Bag. Program Komputer", "MM RS Mayapada Tangerang", "MM RS Carolus Sumarecon", "MM RS EMC Alam Sutera", "MM Bandara Soetta T 1B Keberangkatan", "MM Bandara Soetta T 2E Keberangkatan", "MM Bandara Soetta T 2F Keberangkatan", "MM Bandara Soetta T 3Int Kedatangan", "MM RS Siloam Cikarang", "MM RS EMC Sentul", "MM Green Terrace TMII", "MM Villagio Sumarecon Karawang", "MM RS Premier Bintaro", "MM RS Mayapada Kuningan", "MM Plaza Bintaro", "MM HO Fatmawati", "MM Cikajang", "MM Hypermart Taman Yasmin", "MM RSUP Fatmawati", "MM Bandara Soetta T 1A Keberangkatan", "MM Bandara Soetta T 1C Keberangkatan", "PK Bandara Soetta T 1C Keberangkatan", "MM Bandara Soetta T 3 Gate 3 Kedatangan", "MM Bandara Soetta T 3 Gate 14 Keberangkatan", "MM Melawai", "MM RS Pusat Pertamina", "MM RS Hermina Kemayoran", "MM RS EKA MT. Haryono", "MM RSPAD Gatot Soebroto", "MM RS Pantai Indah Kapuk", "MM Mal Puri Indah", "MM Pandansari", "MM RS Mayapada Jaksel", "PK RS Mayapada Jaksel", "MM RS EMC Pekayon", "MM RS Mayapada Jaktim", "MM RS Hasan Sadikin Bandung", "MM RS Mayapda Bandung", "MM Paris Van Java", "MM Sumarecon Mal Bandung", "MM Paskal 23 Bandung", "MM Living World Bali", "PK Living World Bali", "MM Gatot Soebroto", "MM RSUP Prof. Dr. I.G.N.G. Ngoerah", "MM RS Kasih Ibu", "MM Lippo Plaza Sunset", "MM Icon Bali", "PK Icon Bali", "MM Mal Bali Galeria", "PK Mal Bali Galeria", "MM Lippo Mal Kuta", "MM Plaza Renon", "MM Beachwalk", "PK Beachwalk", "MM Teuku Umar", "MM Mega Mas Manado", "MM Manado Town Square", "MM Grand City Surabaya", "MM Bandara Juanda", "MM RS Mayapada Surabaya", "MM RS Mitra Keluarga Waru", "MM RS Husada Utama", "MM RS Mitra Keluarga Sidoarjo", "MM RS Mitra Keluarga Darmo Satelit", "MM Bandar Udara Sultan Hasanudin Kedatangan", "MM Bandar Udara Sultan Hasanudin Keberangkatan", "MM RS Mayapada Nusantara"];
         const DISTRICTS = ["Jakarta", "Bali", "Bandung", "Surabaya", "Manado", "IKN", "Makasar"];
         
         const REVIEWERS = ["MR", "QMR Team"];
@@ -693,6 +608,7 @@
             "Kompetensi SDM",
             "Ketersediaan Sumberdaya",
             "Delivery Time",
+            "Branding",
             "Hygiene & Sanitasi",
             "Food Safety",
             "Lainnya"
@@ -724,7 +640,7 @@
         ];
         
         const KATEGORI_SUMBERDAYA = {
-            "SDM (7.1.2 & 7.2)": ["Karyawan Produksi/Dapur", "Karyawan Servant", "Kepala Cabang", "Operator", "Staff", "Driver", "Security"],
+            "SDM (7.1.2 & 7.2)": ["Karyawan Produksi/Dapur", "Karyawan Pelayanan", "Supervisor Halal", "Quality Control", "Manajemen", "Tenaga Kebersihan", "Driver/Kurir", "Security"],
             "Infrastruktur (7.1.3)": ["Gedung & Fasilitas", "Peralatan Dapur", "Cold Storage/Freezer", "Kendaraan Operasional", "Peralatan Produksi", "Furniture & Fixture", "Utilitas (Listrik/Air/Gas)"],
             "Lingkungan Proses (7.1.4)": ["Suhu & Kelembaban", "Kebersihan & Sanitasi", "Pencahayaan", "Ventilasi & Sirkulasi Udara", "Pengendalian Hama", "Kebisingan", "Tata Letak Area Kerja"],
             "Alat Monitoring & Pengukuran (7.1.5)": ["Termometer", "Timbangan", "pH Meter", "Hygrometer", "Timer", "Alat Uji Minyak", "Metal Detector", "Alat Ukur Lainnya"],
@@ -824,119 +740,12 @@
             codex: "https://www.fao.org/fao-who-codexalimentarius/en/"
         };
 
-        // Konfigurasi Notifikasi (saat ini menggunakan Telegram Bot API)
-        const WA_CONFIG = {
-            enabled: true,
-            // defaultRecipients sekarang adalah Chat ID Telegram, bukan nomor HP
-            defaultRecipients: ['123456789'],
-            webhookUrl: '', // URL API Telegram opsional (bisa dikosongkan)
-            notificationTime: '07:00'
-        };
-
         // SOP DATA
         const SOP_DATA = { "MR": [ { no: "GDB-PM-01", judul: "Pedoman Mutu" }, { no: "GDB-MSJPH-01", judul: "Manual Sistem Jaminan Produk Halal" }, { no: "GDB-MJR-PK-01", judul: "Pengendalian Dokumen" }, { no: "GDB-MJR-PK-02", judul: "Pengendalian Catatan" }, { no: "GDB-MJR-PK-03", judul: "Tinjauan Manajemen" }, { no: "GDB-MJR-PK-04", judul: "Audit Internal" }, { no: "GDB-MJR-PK-05", judul: "Tindakan Koreksi" }, { no: "GDB-MJR-PK-06", judul: "Identifikasi Resiko & Peluang" }, { no: "GDB-MJR-PK-07", judul: "Manajemen Perubahan" }, { no: "GDB-MJR-PK-08", judul: "Pengendalian Produk Tidak Sesuai" }, { no: "GDB-MJR-PK-09", judul: "Identifikasi Mampu Telusur" } ], "Div. PPSDM": [ { no: "GDB-SDM-PK-01", judul: "Rekrutmen" }, { no: "GDB-SDM-PK-02", judul: "Mutasi, Promosi, Demosi" }, { no: "GDB-SDM-PK-03", judul: "Pelatihan" }, { no: "GDB-SDM-PK-04", judul: "Kecelakaan Kerja" } ], "Div. TIK": [ { no: "GDB-TIK-PK-01", judul: "Penyelesaian Permohonan dan Keluhan" }, { no: "GDB-TIK-PK-02", judul: "Permohonan Investasi" }, { no: "GDB-TIK-PK-03", judul: "Permohonan Perbaikan" } ], "Bag. Std Lit": [ { no: "GDB-LIT-PK-01", judul: "Pengembangan Produk" }, { no: "GDB-LIT-PK-02", judul: "Uji Lab" } ], "Div. Pembelian": [ { no: "GDB-PMB-PK-01", judul: "Seleksi & Evaluasi Supplier" }, { no: "GDB-PMB-PK-02", judul: "Pembelian Barang" }, { no: "GDB-PMB-PK-03", judul: "Penggantian/ Alternatif Bahan" } ], "Div. PPP": [ { no: "GDB-PPP-PK-01", judul: "Pemenuhan Permintaan Pelanggan" }, { no: "GDB-PPP-PK-02", judul: "Pengendalian Persediaan Barang" } ], "Div. IPU": [ { no: "GDB-IPU-PK-01", judul: "Perawatan Peralatan" }, { no: "GDB-IPU-PK-02", judul: "Perbaikan Peralatan & Infrastruktur" } ], "Div. PKP": [ { no: "GDB-PKP-PK-01", judul: "Penanganan Keluhan Pelanggan" }, { no: "GDB-PKP-PK-02", judul: "Pengukuran Kepuasan Pelanggan" } ], "Div. Pengembangan Usaha": [ { no: "GDB-PPU-PK-01", judul: "Penetapan Lokasi Cabang Baru" } ] };
 
         // APP MODULES DEFINITION
         const APP_MODULES = [
             { id: 'dashboard', label: 'Dashboard', icon: 'fa-chart-pie', type: 'dashboard' },
-            {
-                id: 'peta_klausul',
-                label: 'Peta Klausul SMM & SJPH',
-                icon: 'fa-table-list',
-                fields: [
-                    { name: 'klausul', label: 'Klausul', type: 'select', options: [], dynamicOptions: true, required: true },
-                    { name: 'judul_klausul', label: 'Judul Klausul', type: 'text', required: true, readonly: true },
-                    { name: 'lingkup', label: 'Lingkup', type: 'text', required: true, readonly: true },
-                    { name: 'kategori', label: 'Kategori', type: 'text', required: true, readonly: true },
-                    { name: 'modul_terkait', label: 'Modul Terkait di Aplikasi', type: 'textarea', placeholder: 'Contoh: Dasar Hukum, Isu Internal/Eksternal, Identifikasi Resiko, Sasaran Mutu, Audit Sistem' },
-                    { name: 'bukti_utama', label: 'Bukti Utama (Dokumen/Record)', type: 'textarea', placeholder: 'Contoh: Pedoman Mutu, SOP, Form, Rekaman Audit, dll.' },
-                    { name: 'status_pemenuhan', label: 'Status Pemenuhan', type: 'select', options: ['Lengkap', 'Sebagian', 'Belum'], required: true },
-                    { name: 'prioritas', label: 'Prioritas Tindak Lanjut', type: 'select', options: ['Tinggi', 'Sedang', 'Rendah'] },
-                    { name: 'catatan', label: 'Catatan', type: 'textarea' }
-                ]
-            },
-            {
-                id: 'kebijakan_sjph',
-                label: 'Kebijakan & Struktur SJPH',
-                icon: 'fa-handshake-angle',
-                fields: [
-                    { name: 'jenis_entri', label: 'Jenis Entri', type: 'select', options: ['Kebijakan', 'Struktur SJPH'], required: true },
-
-                    // Kebijakan SJPH
-                    { name: 'no_dokumen', label: 'No Dokumen', type: 'text' },
-                    { name: 'judul_dokumen', label: 'Judul Dokumen/Kebijakan', type: 'text', required: true },
-                    { name: 'jenis_dokumen', label: 'Jenis Dokumen', type: 'select', options: ['Kebijakan', 'Pedoman', 'SOP', 'Instruksi Kerja', 'Formulir', 'Lainnya'] },
-                    { name: 'kriteria_sjph', label: 'Kriteria SJPH', type: 'select', options: ['A', 'B', 'C', 'D', 'E', 'A & E', 'A & B', 'C & D & E'] },
-                    { name: 'klausul_iso', label: 'Klausul ISO 9001 Terkait', type: 'text', placeholder: 'Contoh: 5.1, 5.2, 5.3' },
-                    { name: 'ditetapkan_oleh', label: 'Ditetapkan Oleh', type: 'text' },
-                    { name: 'tanggal_ditetapkan', label: 'Tanggal Ditetapkan', type: 'date' },
-                    { name: 'ringkasan_isi', label: 'Ringkasan Isi Kebijakan', type: 'textarea' },
-                    { name: 'lingkup', label: 'Lingkup', type: 'select', options: ['SJPH', 'SMM & SJPH', 'SMM', 'K3', 'Lingkungan'], required: true },
-                    { name: 'status_sosialisasi', label: 'Status Sosialisasi', type: 'select', options: ['Belum Disosialisasi', 'Dalam Proses Sosialisasi', 'Sudah Disosialisasi'] },
-                    { name: 'media_sosialisasi', label: 'Media Sosialisasi', type: 'textarea', placeholder: 'Contoh: Rapat, Poster, E-learning' },
-                    { name: 'status_implementasi', label: 'Status Implementasi', type: 'select', options: ['Belum Diterapkan', 'Dalam Penerapan', 'Efektif', 'Perlu Penguatan'] },
-                    { name: 'link_dokumen', label: 'Dokumen Kebijakan/Pedoman', type: 'file' },
-
-                    // Struktur Tim SJPH / Tim Halal
-                    { name: 'posisi', label: 'Posisi Dalam Struktur SJPH', type: 'select', options: ['Ketua Tim SJPH', 'Sekretaris', 'Anggota Tim SJPH', 'Halal Supervisor Cabang', 'Manajemen Puncak', 'Lainnya'] },
-                    { name: 'nama', label: 'Nama Personel', type: 'text' },
-                    { name: 'unit', label: 'Unit / Lokasi', type: 'text', placeholder: 'Contoh: HO, Cabang RS X' },
-                    { name: 'tanggung_jawab', label: 'Tanggung Jawab', type: 'textarea' },
-                    { name: 'wewenang', label: 'Wewenang', type: 'textarea' },
-                    { name: 'masa_berlaku', label: 'Masa Berlaku Penunjukan', type: 'text', placeholder: 'Contoh: 2024-2026' },
-                    { name: 'status_aktif', label: 'Status Personel', type: 'select', options: ['Aktif', 'Non Aktif'] },
-                    { name: 'bukti_penunjukan', label: 'Bukti Penunjukan / SK', type: 'file' },
-
-                    // Review & Persetujuan (Super Admin Only via REVIEW_FIELDS)
-                    { name: 'status_review', label: 'Status Review', type: 'select', options: STATUS_REVIEW },
-                    { name: 'pic_reviewer', label: 'PIC Reviewer', type: 'select', options: REVIEWERS },
-                    { name: 'tgl_review_terakhir', label: 'Tgl Review Terakhir', type: 'date' },
-                    { name: 'tgl_review_berikutnya', label: 'Tgl Review Berikutnya', type: 'date' },
-                    { name: 'catatan_review', label: 'Catatan Review', type: 'textarea' }
-                ]
-            },
-            {
-                id: 'peta_proses_halal',
-                label: 'Peta Proses Halal',
-                icon: 'fa-diagram-project',
-                fields: [
-                    { name: 'kode_proses', label: 'Kode Proses', type: 'text', placeholder: 'Contoh: PRC-001' },
-                    { name: 'nama_proses', label: 'Nama Proses', type: 'text', required: true },
-                    { name: 'kategori_proses', label: 'Kategori Proses', type: 'select', options: ['Proses Utama', 'Proses Pendukung', 'Proses Kontrol', 'Distribusi & Pengiriman'] },
-                    { name: 'lokasi', label: 'Lokasi / Unit', type: 'select', options: DIVISIONS },
-                    { name: 'urut_proses', label: 'Urut Proses', type: 'number' },
-                    { name: 'kriteria_sjph', label: 'Kriteria SJPH', type: 'select', options: ['A', 'B', 'C', 'D', 'E'] },
-                    { name: 'klausul_iso', label: 'Klausul ISO 9001 Terkait', type: 'text', placeholder: 'Contoh: 4.4, 7.1.4, 8.5.1' },
-
-                    // Titik Kritis Halal & Kontrol
-                    { name: 'ada_titik_kritis', label: 'Ada Titik Kritis Halal', type: 'select', options: ['Ya', 'Tidak'] },
-                    { name: 'jenis_titik_kritis', label: 'Jenis Titik Kritis', type: 'select', options: ['CP', 'CCP', 'Titik Kontrol Lainnya'] },
-                    { name: 'deskripsi_titik_kritis', label: 'Deskripsi Titik Kritis', type: 'textarea' },
-                    { name: 'resiko_halal', label: 'Resiko Halal', type: 'textarea' },
-                    { name: 'langkah_pengendalian', label: 'Langkah Pengendalian', type: 'textarea' },
-                    { name: 'frekuensi_monitoring', label: 'Frekuensi Monitoring', type: 'select', options: ['Setiap Batch', 'Harian', 'Mingguan', 'Bulanan', 'Triwulan', 'Semester', 'Tahunan'] },
-                    { name: 'metode_monitoring', label: 'Metode Monitoring', type: 'textarea' },
-                    { name: 'bukti_monitoring', label: 'Bukti Monitoring', type: 'textarea', placeholder: 'Contoh: Checklist harian, log suhu, form inspeksi' },
-                    { name: 'status_pengendalian', label: 'Status Pengendalian', type: 'select', options: ['Efektif', 'Perlu Perbaikan', 'Belum Efektif'] },
-
-                    // Keterkaitan dengan Modul Lain
-                    { name: 'bahan_terkait', label: 'Bahan Terkait (dari Daftar Bahan Halal)', type: 'textarea' },
-                    { name: 'produk_terkait', label: 'Produk Terkait (dari Modul Produk)', type: 'textarea' },
-                    { name: 'dokumen_pendukung', label: 'Dokumen Pendukung (SOP/IK/Checklist)', type: 'textarea' },
-                    { name: 'link_dokumen', label: 'Dokumen Peta Proses / Diagram', type: 'file' },
-
-                    // Monitoring & Review
-                    { name: 'pic', label: 'PIC Proses', type: 'select', options: ['MR', 'QMR Team', 'Halal Supervisor Cabang', 'Kepala Cabang', 'Tim SJPH', 'Lainnya'] },
-                    { name: 'status_proses', label: 'Status Proses', type: 'select', options: ['Berjalan', 'Dalam Pengembangan', 'Tidak Digunakan'] },
-
-                    // Review & Persetujuan (Super Admin Only)
-                    { name: 'status_review', label: 'Status Review', type: 'select', options: STATUS_REVIEW },
-                    { name: 'pic_reviewer', label: 'PIC Reviewer', type: 'select', options: REVIEWERS },
-                    { name: 'tgl_review_terakhir', label: 'Tgl Review Terakhir', type: 'date' },
-                    { name: 'tgl_review_berikutnya', label: 'Tgl Review Berikutnya', type: 'date' },
-                    { name: 'catatan_review', label: 'Catatan Review', type: 'textarea' }
-                ]
-            },
             { 
                 id: 'dasar_hukum', 
                 label: 'Dasar Hukum', 
@@ -1076,7 +885,7 @@
                     {name:'tgl_maintenance_terakhir', label:'Terakhir Maintenance', type:'date'},
                     {name:'tgl_maintenance_berikutnya', label:'Berikutnya Maintenance', type:'date'},
                     {name:'tindakan_pemenuhan', label:'Tindakan Pemenuhan', type:'textarea'},
-                    {name:'tindakan_monitoring', label:'Tindakan Monitoring', type:'textarea', required: true},
+                    {name:'tindakan_monitoring', label:'Tindakan Monitoring', type:'textarea'},
                     {name:'pic', label:'PIC (Person In Charge)', type:'select', options:["MR","QMR Team","Halal Team","Div. PPSDM","Div. TIK","Div. IPU","Div. Pembelian","Div. PPP","Div. PKP","Div. Pengembangan Usaha","Kepala Cabang"], required: true},
                     {name:'frekuensi_monitoring', label:'Frekuensi Monitoring', type:'select', options:["Harian","Mingguan","Bulanan","Triwulan","Semester","Tahunan","Insidental"], required: true},
                     {name:'hasil_monitoring', label:'Hasil Monitoring Terakhir', type:'textarea'},
@@ -1102,7 +911,7 @@
                     {name:'divisi',label:'Divisi/Cabang',type:'select',options:DIVISIONS}, 
                     {name:'klausul',label:'Klausul',type:'select',options:[], dynamicOptions: true}, 
                     {name:'lingkup',label:'Lingkup Sistem',type:'text', readonly: true}, 
-                    {name:'status_temuan',label:'Status Temuan',type:'select',options:["Major","Minor","OFI"]}, 
+                    {name:'status_temuan',label:'Status Temuan',type:'select',options:["Major","Minor","OFI","Tidak ada temuan"]}, 
                     {name:'temuan',label:'Temuan Audit',type:'textarea', required: true}, 
                     {name:'perbaikan',label:'Perbaikan',type:'textarea'}, 
                     {name:'due_date',label:'Due Date',type:'date'}, 
@@ -1152,31 +961,6 @@
             ] },
             { id: 'arsip_sop', label: 'Arsip SOP', icon: 'fa-book', fields: [ {name:'divisi',label:'Divisi',type:'select',options:["MR","Div. PPSDM","Div. TIK","Div. IPU","Div. Pembelian","Div. PPP","Div. PKP","Div. Pengembangan Usaha","Bag. Std Lit"]}, {name:'nomor_sop',label:'Nomor SOP',type:'select',options:[]}, {name:'judul_sop',label:'Judul SOP',type:'text'}, {name:'versi',label:'Versi/Revisi',type:'text'}, {name:'tgl_berlaku',label:'Tanggal Berlaku',type:'date'}, {name:'link_sop',label:'Link SOP',type:'file'} ] },
             { id: 'agenda', label: 'Agenda Kegiatan', icon: 'fa-calendar-check', fields: [ {name:'nama_kegiatan',label:'Nama Kegiatan',type:'text'}, {name:'tgl_mulai',label:'Tanggal Mulai',type:'date'}, {name:'tgl_selesai',label:'Tanggal Selesai',type:'date'}, {name:'anggaran',label:'Anggaran (Rp)',type:'currency'}, {name:'realisasi',label:'Realisasi Anggaran (Rp)',type:'currency'}, {name:'lokasi',label:'Lokasi',type:'text'}, {name:'penyelenggara',label:'Penyelenggara',type:'text'} ] },
-            {
-                id: 'keluhan_kepuasan',
-                label: 'Keluhan & Kepuasan Pelanggan',
-                icon: 'fa-comments',
-                fields: [
-                    { name: 'sumber', label: 'Sumber Data', type: 'select', options: ['Google Review', 'Instagram', 'WA Customer Care', 'On Site'], required: true },
-                    { name: 'rating', label: 'Rating / Kepuasan', type: 'select', options: [] },
-                    { name: 'ada_keluhan', label: 'Ada Keluhan?', type: 'select', options: ['Ya', 'Tidak'], required: true },
-                    { name: 'kategori_keluhan', label: 'Kategori Keluhan', type: 'select', options: ['Produk', 'Pelayanan', 'Lingkungan'] },
-                    { name: 'sub_kategori_keluhan', label: 'Sub Kategori Keluhan', type: 'select', options: [], dynamicOptions: true },
-                    { name: 'deskripsi', label: 'Deskripsi Keluhan / Review', type: 'textarea' },
-                    { name: 'lokasi', label: 'Lokasi / Cabang', type: 'select', options: DIVISIONS },
-                    { name: 'tanggal', label: 'Tanggal', type: 'date' },
-                    { name: 'nama_customer', label: 'Nama Customer', type: 'text' },
-                    // CAPA Section
-                    { name: 'jenis_capa', label: 'Jenis CAPA', type: 'select', options: ['Koreksi Cepat', 'Tindakan Perbaikan', 'Tindakan Pencegahan'] },
-                    { name: 'akar_penyebab', label: 'Akar Penyebab', type: 'textarea' },
-                    { name: 'tindakan_koreksi', label: 'Tindakan Koreksi', type: 'textarea' },
-                    { name: 'tindakan_perbaikan', label: 'Tindakan Perbaikan', type: 'textarea' },
-                    { name: 'tindakan_pencegahan', label: 'Tindakan Pencegahan', type: 'textarea' },
-                    { name: 'pic_capa', label: 'PIC CAPA', type: 'text' },
-                    { name: 'due_date_capa', label: 'Target Selesai CAPA', type: 'date' },
-                    { name: 'status_capa', label: 'Status CAPA', type: 'select', options: ['Open', 'On Progress', 'Closed'] }
-                ]
-            },
             { id: 'log_perubahan', label: 'Log Perubahan', icon: 'fa-clock-rotate-left', type: 'log_viewer' }
         ];
 
@@ -1211,7 +995,7 @@
         };
         
         // Module yang bisa di-CRUD oleh Editor
-        const EDITOR_ALLOWED_MODULES = ['nota_perubahan', 'identifikasi_resiko', 'sasaran_mutu', 'sumberdaya', 'keluhan_kepuasan'];
+        const EDITOR_ALLOWED_MODULES = ['nota_perubahan', 'identifikasi_resiko', 'sasaran_mutu', 'sumberdaya'];
         
         // Module yang bisa di-CRUD oleh Editor+ (semua module Editor + daftar_bahan_halal)
         const EDITOR_PLUS_ALLOWED_MODULES = ['nota_perubahan', 'identifikasi_resiko', 'sasaran_mutu', 'sumberdaya', 'daftar_bahan_halal'];
@@ -1281,7 +1065,7 @@
                 case ROLES.EDITOR_PLUS:
                     return 'CRUD: Nota Perubahan, Identifikasi Resiko, Sasaran Mutu, Sumberdaya, Daftar Bahan Halal (tanpa Review)';
                 case ROLES.EDITOR:
-                    return 'CRUD: Nota Perubahan, Identifikasi Resiko, Sasaran Mutu, Keluhan & Kepuasan Pelanggan, Sumberdaya (tanpa Review)';
+                    return 'CRUD: Nota Perubahan, Identifikasi Resiko, Sasaran Mutu, Sumberdaya (tanpa Review)';
                 case ROLES.USER:
                     return 'Hanya bisa melihat data (Read Only)';
                 default:
@@ -1352,128 +1136,12 @@
         // ============================================
         function renderSidebar() {
             const nav = document.getElementById('nav-menu');
-
-            // Helper to get module config
-            const getModule = (id) => APP_MODULES.find(m => m.id === id);
-
-            // Define groups
-            const smmModules = [
-                'nota_perubahan',
-                'isu_internal_eksternal',
-                'identifikasi_resiko',
-                'sasaran_mutu',
-                'keluhan_kepuasan'
-            ];
-
-            const sjphModules = [
-                'kebijakan_sjph',
-                'peta_proses_halal',
-                'daftar_bahan_halal',
-                'produk'
-            ];
-
-            const bothModules = [
-                'peta_klausul',
-                'audit_sistem',
-                'dasar_hukum',
-                'arsip_sop',
-                'sumberdaya',
-                'agenda',
-                'data_auditor'
-            ];
-
-            // Build sidebar HTML
-            let html = '';
-
-            // Dashboard (top, outside groups)
-            const dashboardMod = getModule('dashboard');
-            if (dashboardMod) {
-                html += `
-                    <button
-                        type="button"
-                        class="nav-item w-full text-left px-4 py-2.5 rounded-lg mb-2 flex items-center gap-3 transition text-gray-100 text-sm hover:bg-white/10"
-                        data-module="dashboard"
-                        onclick="loadModule('dashboard')"
-                    >
-                        <i class="fa-solid ${dashboardMod.icon} w-5 text-center text-xs"></i>
-                        <span class="font-semibold">${dashboardMod.label}</span>
-                    </button>
-                    <div class="h-px bg-white/10 my-1"></div>
-                `;
-            }
-
-            // Helper to render group header
-            const renderGroupHeader = (groupKey, title, iconClass) => `
-                <button
-                    type="button"
-                    class="nav-group w-full text-left px-3 py-2.5 rounded-lg mb-1 flex items-center justify-between gap-2 transition text-gray-100 text-xs hover:bg-white/10 font-semibold tracking-wide"
-                    onclick="toggleSidebarGroup('${groupKey}')"
-                >
-                    <span class="flex items-center gap-2">
-                        <i class="fa-solid ${iconClass} w-4 text-center"></i>
-                        <span>${title}</span>
-                    </span>
-                    <i id="chevron-${groupKey}" class="fa-solid fa-chevron-down w-3 h-3 text-[10px]"></i>
+            nav.innerHTML = APP_MODULES.map(mod => `
+                <button id="nav-${mod.id}" onclick="loadModule('${mod.id}')" class="w-full text-left px-4 py-2.5 rounded-lg mb-1 flex items-center gap-3 transition hover:bg-white/10 text-gray-100 text-sm">
+                    <i class="fa-solid ${mod.icon} w-5 text-center text-xs"></i>
+                    <span class="font-medium">${mod.label}</span>
                 </button>
-            `;
-
-            // Helper to render module list for a group
-            const renderGroupModules = (groupKey, ids) => {
-                const items = ids
-                    .map(id => getModule(id))
-                    .filter(Boolean)
-                    .map(mod => `
-                        <button
-                            type="button"
-                            id="nav-${groupKey}-${mod.id}"
-                            class="nav-item w-full text-left pl-6 pr-3 py-2 rounded-lg mb-0.5 flex items-center gap-2 transition text-gray-100 text-xs hover:bg-white/10"
-                            data-module="${mod.id}"
-                            onclick="loadModule('${mod.id}')"
-                        >
-                            <i class="fa-solid ${mod.icon} w-4 text-center text-[11px]"></i>
-                            <span class="font-medium">${mod.label}</span>
-                        </button>
-                    `)
-                    .join('');
-
-                return `
-                    <div id="group-${groupKey}-submenu" class="mb-2">
-                        ${items || '<p class="text-[11px] text-white/60 pl-6 py-1">Belum ada modul</p>'}
-                    </div>
-                `;
-            };
-
-            // Group SMM (top)
-            html += renderGroupHeader('smm', 'SMM ISO 9001:2015', 'fa-industry');
-            html += renderGroupModules('smm', smmModules);
-
-            // Group SJPH
-            html += renderGroupHeader('sjph', 'SJPH (Sistem Jaminan Produk Halal)', 'fa-mosque');
-            html += renderGroupModules('sjph', sjphModules);
-
-            // Group Gabungan Sistem
-            html += renderGroupHeader('both', 'Gabungan SMM & SJPH', 'fa-layer-group');
-            html += renderGroupModules('both', bothModules);
-
-            nav.innerHTML = html;
-        }
-
-        // Toggle sidebar group (SMM, SJPH, BOTH)
-        function toggleSidebarGroup(groupKey) {
-            const submenu = document.getElementById(`group-${groupKey}-submenu`);
-            const chevron = document.getElementById(`chevron-${groupKey}`);
-            if (!submenu || !chevron) return;
-
-            const isHidden = submenu.classList.contains('hidden');
-            if (isHidden) {
-                submenu.classList.remove('hidden');
-                chevron.classList.remove('fa-chevron-right');
-                chevron.classList.add('fa-chevron-down');
-            } else {
-                submenu.classList.add('hidden');
-                chevron.classList.remove('fa-chevron-down');
-                chevron.classList.add('fa-chevron-right');
-            }
+            `).join('');
         }
 
         function loadModule(moduleId, isSilent = false) {
@@ -1483,12 +1151,14 @@
             filterStatusReview = '';
             closeMobileMenu();
 
-            // Update active nav (only sub-module items)
-            document.querySelectorAll('#nav-menu .nav-item').forEach((b) => {
+            // Update active nav
+            document.querySelectorAll('#nav-menu button').forEach(b => {
                 b.classList.remove('bg-white/20', 'shadow-lg');
+                b.classList.add('hover:bg-white/10');
             });
-            const activeBtn = document.querySelector(`#nav-menu .nav-item[data-module="${moduleId}"]`);
-            if (activeBtn) {
+            const activeBtn = document.getElementById(`nav-${moduleId}`);
+            if(activeBtn) {
+                activeBtn.classList.remove('hover:bg-white/10');
                 activeBtn.classList.add('bg-white/20', 'shadow-lg');
             }
 
@@ -5069,7 +4739,6 @@
             const mutu = db['sasaran_mutu'] || [];
             const sumberdaya = db['sumberdaya'] || [];
             const audit = db['audit_sistem'] || [];
-            const keluhan = db['keluhan_kepuasan'] || [];
             
             // ===== CALCULATE STATISTICS =====
             // Dasar Hukum Stats
@@ -5128,27 +4797,6 @@
             const isuInternal = isu.filter(x => x.jenis === 'Internal').length;
             const isuEksternal = isu.filter(x => x.jenis === 'Eksternal').length;
             const isuAktif = isu.filter(x => x.status_isu === 'Aktif' || x.status_isu === 'Dalam Monitoring').length;
-            
-            // Keluhan & Kepuasan Stats
-            const keluhanGoogle = keluhan.filter(x => x.sumber === 'Google Review');
-            const keluhanIG = keluhan.filter(x => x.sumber === 'Instagram');
-            const keluhanWA = keluhan.filter(x => x.sumber === 'WA Customer Care');
-            const keluhanOnSite = keluhan.filter(x => x.sumber === 'On Site');
-            
-            const countPuas = (list) => list.filter(x => x.rating === 'Puas' || x.rating === '4' || x.rating === '5').length;
-            const countTidakPuas = (list) => list.filter(x => x.rating === 'Tidak Puas' || x.rating === '1' || x.rating === '2' || x.rating === '3').length;
-            
-            const googlePuas = countPuas(keluhanGoogle);
-            const googleTidakPuas = countTidakPuas(keluhanGoogle);
-            const igPuas = countPuas(keluhanIG);
-            const igTidakPuas = countTidakPuas(keluhanIG);
-            const waPuas = countPuas(keluhanWA);
-            const waTidakPuas = countTidakPuas(keluhanWA);
-            const onSitePuas = countPuas(keluhanOnSite);
-            const onSiteTidakPuas = countTidakPuas(keluhanOnSite);
-            
-            const capaOpen = keluhan.filter(x => x.status_capa === 'Open').length;
-            const capaClosed = keluhan.filter(x => x.status_capa === 'Closed').length;
             
             // Calculate compliance percentage (simplified)
             const complianceSMM = Math.round(((dhBerlaku + mutuTercapai + sdaTerpenuhi + auditClosed) / Math.max((dasarHukum.length + mutu.length + sumberdaya.length + audit.length), 1)) * 100);
@@ -5313,7 +4961,7 @@
                                 <p class="text-[10px] text-gray-500">Sistem Manajemen Mutu</p>
                             </div>
                         </div>
-                        <div class="grid grid-cols-3 gap-2 mb-2">
+                        <div class="grid grid-cols-3 gap-2">
                             <div class="bg-white rounded-lg p-2 text-center border border-blue-100 cursor-pointer hover:shadow-sm transition" onclick="loadModule('dasar_hukum')">
                                 <p class="text-lg font-bold text-blue-600">${dasarHukum.length}</p>
                                 <p class="text-[9px] text-gray-500">Dasar Hukum</p>
@@ -5327,31 +4975,12 @@
                                 <p class="text-[9px] text-gray-500">Audit (${auditOpen} Open)</p>
                             </div>
                         </div>
-                        <div class="mt-1 flex items-center justify-between mb-2">
+                        <div class="mt-3 flex items-center justify-between">
                             <div class="flex items-center gap-2">
                                 <span class="w-2 h-2 rounded-full ${dhPerluReview > 0 ? 'bg-yellow-400' : 'bg-green-400'}"></span>
                                 <span class="text-[10px] text-gray-600">${dhPerluReview > 0 ? dhPerluReview + ' dok perlu review' : 'Dokumen terupdate'}</span>
                             </div>
                             <span class="text-[10px] px-2 py-0.5 rounded bg-blue-600 text-white font-medium">${complianceSMM}% Compliant</span>
-                        </div>
-                        <!-- Keluhan & CAPA Summary (SMM) -->
-                        <div class="mt-1 grid grid-cols-2 gap-2 text-center text-[10px]">
-                            <div class="bg-white rounded-lg p-2 border border-blue-100">
-                                <p class="text-[9px] text-gray-500 mb-1">Review per Channel (Tidak Puas)</p>
-                                <div class="grid grid-cols-2 gap-1 text-[9px] text-gray-600">
-                                    <span>Google: <span class="font-bold text-red-600">${googleTidakPuas}</span></span>
-                                    <span>IG: <span class="font-bold text-red-600">${igTidakPuas}</span></span>
-                                    <span>WA: <span class="font-bold text-red-600">${waTidakPuas}</span></span>
-                                    <span>On Site: <span class="font-bold text-red-600">${onSiteTidakPuas}</span></span>
-                                </div>
-                            </div>
-                            <div class="bg-white rounded-lg p-2 border border-blue-100 flex flex-col justify-center">
-                                <p class="text-[9px] text-gray-500 mb-1">Status CAPA Keluhan</p>
-                                <div class="flex items-center justify-center gap-2">
-                                    <span class="px-2 py-0.5 rounded-full bg-red-50 text-red-700 font-bold">Open: ${capaOpen}</span>
-                                    <span class="px-2 py-0.5 rounded-full bg-green-50 text-green-700 font-bold">Closed: ${capaClosed}</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     
@@ -5366,7 +4995,7 @@
                                 <p class="text-[10px] text-gray-500">Sistem Jaminan Produk Halal</p>
                             </div>
                         </div>
-                        <div class="grid grid-cols-3 gap-2 mb-2">
+                        <div class="grid grid-cols-3 gap-2">
                             <div class="bg-white rounded-lg p-2 text-center border border-green-100 cursor-pointer hover:shadow-sm transition" onclick="loadModule('daftar_bahan_halal')">
                                 <p class="text-lg font-bold text-green-600">${bahan.length}</p>
                                 <p class="text-[9px] text-gray-500">Bahan Halal</p>
@@ -5380,7 +5009,7 @@
                                 <p class="text-[9px] text-gray-500">Auditor Halal</p>
                             </div>
                         </div>
-                        <div class="mt-1 flex items-center justify-between mb-2">
+                        <div class="mt-3 flex items-center justify-between">
                             <div class="flex items-center gap-2">
                                 <span class="w-2 h-2 rounded-full ${produkBelumSH > 0 ? 'bg-yellow-400' : 'bg-green-400'}"></span>
                                 <span class="text-[10px] text-gray-600">${produkBelumSH > 0 ? produkBelumSH + ' produk belum ber-SH' : 'Semua produk ber-SH'}</span>
@@ -5451,31 +5080,6 @@
                     </div>
                 </div>
 
-                <!-- WhatsApp Notification Section -->
-                ${isSuperAdmin() ? `
-                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200 mb-4">
-                    <div class="flex items-center justify-between flex-wrap gap-3">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                                <i class="fa-brands fa-whatsapp text-white text-lg"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-bold text-gray-800">Notifikasi WhatsApp</h3>
-                                <p class="text-[10px] text-gray-600">Kirim notifikasi ke ${WA_CONFIG.defaultRecipients.length} penerima</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2">
-                            <button onclick="openWASettingsModal()" class="px-3 py-2 bg-white text-gray-700 rounded-lg text-xs font-medium hover:bg-gray-100 transition border border-gray-300 flex items-center gap-1.5">
-                                <i class="fa-solid fa-gear"></i> Pengaturan
-                            </button>
-                            <button onclick="sendWANotificationNow()" id="send-wa-btn" class="px-4 py-2 bg-green-600 text-white rounded-lg text-xs font-medium hover:bg-green-700 transition flex items-center gap-1.5 shadow-sm">
-                                <i class="fa-solid fa-paper-plane"></i> Kirim Notifikasi Sekarang
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                ` : ''}
-                
                 <!-- Quick Access & Notifications -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <!-- Quick Access Modules -->
@@ -5936,126 +5540,6 @@
                     }
                 }
             }
-            
-            // Special logic for peta_klausul - Klausul, Judul, Lingkup & Kategori otomatis dari KLAUSUL_AUDIT
-            if (currentModuleId === 'peta_klausul') {
-                const klausulSelect = form.querySelector('[name="klausul"]');
-                const judulInput = form.querySelector('[name="judul_klausul"]');
-                const lingkupInput = form.querySelector('[name="lingkup"]');
-                const kategoriInput = form.querySelector('[name="kategori"]');
-
-                if (klausulSelect) {
-                    klausulSelect.innerHTML = '<option value="">-- Pilih Klausul --</option>' +
-                        KLAUSUL_AUDIT.map(k => `<option value="${k.no}" ${data.klausul === k.no ? 'selected' : ''}>${k.no} - ${k.judul}</option>`).join('');
-
-                    const updateFields = () => {
-                        const klausulNo = klausulSelect.value;
-                        const klausulData = KLAUSUL_AUDIT.find(k => k.no === klausulNo);
-                        if (klausulData) {
-                            if (judulInput) judulInput.value = klausulData.judul;
-                            if (lingkupInput) lingkupInput.value = klausulData.lingkup;
-                            if (kategoriInput) kategoriInput.value = klausulData.lingkup === 'SMM' ? 'Klausul ISO 9001:2015' : 'Kriteria SJPH';
-                        } else {
-                            if (judulInput) judulInput.value = '';
-                            if (lingkupInput) lingkupInput.value = '';
-                            if (kategoriInput) kategoriInput.value = '';
-                        }
-                    };
-
-                    klausulSelect.addEventListener('change', updateFields);
-
-                    // Initialize on edit
-                    if (data.klausul) {
-                        updateFields();
-                    }
-                }
-            }
-
-            // Special logic for Keluhan & Kepuasan Pelanggan
-            if (currentModuleId === 'keluhan_kepuasan') {
-                const sumberSelect = form.querySelector('[name="sumber"]');
-                const ratingSelect = form.querySelector('[name="rating"]');
-                const adaKeluhanSelect = form.querySelector('[name="ada_keluhan"]');
-                const kategoriSelect = form.querySelector('[name="kategori_keluhan"]');
-                const subKategoriSelect = form.querySelector('[name="sub_kategori_keluhan"]');
-
-                // Dynamic Rating Options based on Source
-                const updateRatingOptions = () => {
-                    if (!ratingSelect) return;
-                    const sumber = sumberSelect?.value || '';
-                    const currentVal = ratingSelect.value;
-                    let opts = [];
-                    if (sumber === 'Google Review') {
-                        opts = ['1', '2', '3', '4', '5'];
-                    } else if (['Instagram', 'WA Customer Care', 'On Site'].includes(sumber)) {
-                        opts = ['Puas', 'Tidak Puas'];
-                    }
-                    ratingSelect.innerHTML = '<option value="">-- Pilih --</option>' +
-                        opts.map(o => `<option value="${o}">${o}</option>`).join('');
-                    if (currentVal && opts.includes(currentVal)) {
-                        ratingSelect.value = currentVal;
-                    }
-                };
-
-                // Sub kategori options by kategori
-                const SUB_KATEGORI = {
-                    'Produk': ['Produk Tidak Standar', 'Produk ada benda asing', 'Produk tidak sesuai request'],
-                    'Pelayanan': ['Sikap Karyawan', 'Penyajian Produk Lama', 'Pelayanan Lama'],
-                    'Lingkungan': ['Fasilitas tidak lengkap', 'Suhu ruangan Panas', 'Bising/Gaduh', 'Interior Eksterior kurang Ok']
-                };
-
-                const updateSubKategori = () => {
-                    const kategori = kategoriSelect?.value;
-                    const list = kategori && SUB_KATEGORI[kategori] ? SUB_KATEGORI[kategori] : [];
-                    if (subKategoriSelect) {
-                        subKategoriSelect.innerHTML = '<option value="">-- Pilih Sub Kategori --</option>' +
-                            list.map(o => `<option value="${o}" ${o === data.sub_kategori_keluhan ? 'selected' : ''}>${o}</option>`).join('');
-                    }
-                };
-
-                kategoriSelect?.addEventListener('change', updateSubKategori);
-                if (data.kategori_keluhan) updateSubKategori();
-
-                // CAPA visibility & requirement
-                const capaFields = ['jenis_capa', 'akar_penyebab', 'tindakan_koreksi', 'tindakan_perbaikan', 'tindakan_pencegahan', 'pic_capa', 'due_date_capa', 'status_capa'];
-
-                // CAPA muncul otomatis & wajib jika rating 1/2/3/Tidak Puas
-                const updateCAPAVisibility = () => {
-                    const rating = ratingSelect?.value || '';
-
-                    // Rating yang memicu CAPA
-                    const ratingButuhCAPA = ['1', '2', '3', 'Tidak Puas'];
-                    const showCAPA = ratingButuhCAPA.includes(rating);
-
-                    capaFields.forEach((fname) => {
-                        const fieldEl = form.querySelector(`[name="${fname}"]`);
-                        const wrapper = fieldEl?.closest('div');
-                        if (!fieldEl || !wrapper) return;
-
-                        if (showCAPA) {
-                            wrapper.style.display = '';
-                            // Field berikut wajib diisi saat CAPA aktif
-                            if (['akar_penyebab', 'tindakan_koreksi', 'pic_capa', 'due_date_capa', 'status_capa'].includes(fname)) {
-                                fieldEl.setAttribute('required', 'required');
-                            }
-                        } else {
-                            wrapper.style.display = 'none';
-                            fieldEl.removeAttribute('required');
-                        }
-                    });
-                };
-
-                sumberSelect?.addEventListener('change', () => {
-                    updateRatingOptions();
-                    updateCAPAVisibility();
-                });
-                ratingSelect?.addEventListener('change', updateCAPAVisibility);
-
-                // Initialize
-                updateRatingOptions();
-                updateSubKategori();
-                updateCAPAVisibility();
-            }
 
             document.getElementById('modal-overlay').classList.remove('hidden');
         }
@@ -6373,282 +5857,6 @@
             t.innerText = message;
             t.className = 'show ' + type;
             setTimeout(() => t.className = t.className.replace("show", ""), 3000);
-        }
-
-        // ============================================
-        // WHATSAPP NOTIFICATION FUNCTIONS
-        // ============================================
-        
-        function openWASettingsModal() {
-            // Load saved settings from localStorage or server
-            const savedSettings = JSON.parse(localStorage.getItem('wa_settings') || '{}');
-            
-            document.getElementById('wa-webhook-url').value = savedSettings.webhookUrl || '';
-            document.getElementById('wa-api-token').value = savedSettings.apiToken || '';
-            document.getElementById('wa-recipients').value = (savedSettings.recipients || WA_CONFIG.defaultRecipients).join('\n');
-            document.getElementById('wa-schedule-time').value = savedSettings.scheduleTime || '07:00';
-            document.getElementById('wa-enabled').value = savedSettings.enabled !== false ? 'true' : 'false';
-            
-            document.getElementById('wa-settings-modal').classList.remove('hidden');
-        }
-        
-        function closeWASettingsModal() {
-            document.getElementById('wa-settings-modal').classList.add('hidden');
-        }
-        
-        function saveWASettings() {
-            const webhookUrl = document.getElementById('wa-webhook-url').value.trim();
-            const apiToken = document.getElementById('wa-api-token').value.trim();
-            const recipientsText = document.getElementById('wa-recipients').value.trim();
-            const scheduleTime = document.getElementById('wa-schedule-time').value;
-            const enabled = document.getElementById('wa-enabled').value === 'true';
-            
-            // Bot Token wajib diisi, webhook URL boleh kosong (akan dibentuk otomatis di server)
-            if (!apiToken) {
-                showToast('Bot Token Telegram wajib diisi!', 'warning');
-                return;
-            }
-            
-            const recipients = recipientsText.split('\n')
-                .map(n => n.trim())
-                .filter(n => n.length > 0);
-            
-            if (recipients.length === 0) {
-                showToast('Minimal satu nomor penerima harus diisi!', 'warning');
-                return;
-            }
-            
-            const settings = {
-                webhookUrl,
-                apiToken,
-                recipients,
-                scheduleTime,
-                enabled
-            };
-            
-            // Save to localStorage
-            localStorage.setItem('wa_settings', JSON.stringify(settings));
-            
-            // Update WA_CONFIG
-            WA_CONFIG.webhookUrl = webhookUrl;
-            WA_CONFIG.defaultRecipients = recipients;
-            WA_CONFIG.enabled = enabled;
-            
-            // Save to server if available
-            if (typeof google !== 'undefined' && google.script) {
-                google.script.run.withSuccessHandler(() => {
-                    showToast('Pengaturan WhatsApp berhasil disimpan!', 'success');
-                    closeWASettingsModal();
-                }).withFailureHandler((err) => {
-                    showToast('Error: ' + err, 'error');
-                }).saveWASettings(settings);
-            } else {
-                showToast('Pengaturan WhatsApp berhasil disimpan!', 'success');
-                closeWASettingsModal();
-            }
-        }
-        
-        function testWASend() {
-            const testNumber = document.getElementById('wa-test-number').value.trim().replace(/\D/g, '');
-            
-            if (!testNumber || testNumber.length < 10) {
-                showToast('Masukkan nomor WhatsApp yang valid!', 'warning');
-                return;
-            }
-            
-            const savedSettings = JSON.parse(localStorage.getItem('wa_settings') || '{}');
-            
-            if (!savedSettings.webhookUrl || !savedSettings.apiToken) {
-                showToast('Simpan pengaturan terlebih dahulu!', 'warning');
-                return;
-            }
-            
-            const testMessage = `🔔 *TEST NOTIFIKASI e-SMM ISO 9001 & SJPH*
-━━━━━━━━━━━━━━━━━━━━━
-📅 Tanggal: ${new Date().toLocaleDateString('id-ID')}
-🕐 Waktu: ${new Date().toLocaleTimeString('id-ID')}
-
-✅ Ini adalah pesan test dari sistem e-Sistem Manajemen Mutu.
-
-Jika Anda menerima pesan ini, berarti konfigurasi WhatsApp berhasil!
-━━━━━━━━━━━━━━━━━━━━━`;
-            
-            showToast('Mengirim test message...', 'info');
-            
-            if (typeof google !== 'undefined' && google.script) {
-                google.script.run.withSuccessHandler((result) => {
-                    if (result.success) {
-                        showToast('Test message berhasil dikirim!', 'success');
-                    } else {
-                        showToast('Gagal: ' + result.message, 'error');
-                    }
-                }).withFailureHandler((err) => {
-                    showToast('Error: ' + err, 'error');
-                }).sendWhatsAppMessage(testNumber, testMessage, savedSettings.webhookUrl, savedSettings.apiToken);
-            } else {
-                // Demo mode - simulate success
-                setTimeout(() => {
-                    showToast('Demo Mode: Test message akan dikirim ke ' + testNumber, 'success');
-                }, 1000);
-            }
-        }
-        
-        function sendWANotificationNow() {
-            const btn = document.getElementById('send-wa-btn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...';
-            btn.disabled = true;
-            
-            const savedSettings = JSON.parse(localStorage.getItem('wa_settings') || '{}');
-            
-            if (!savedSettings.webhookUrl || !savedSettings.apiToken) {
-                showToast('Konfigurasi WhatsApp belum lengkap. Buka Pengaturan terlebih dahulu.', 'warning');
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                return;
-            }
-            
-            // Build notification message
-            const message = buildNotificationMessage();
-            
-            if (typeof google !== 'undefined' && google.script) {
-                google.script.run.withSuccessHandler((result) => {
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                    
-                    if (result.success) {
-                        showToast(`Notifikasi berhasil dikirim ke ${result.sentCount} nomor!`, 'success');
-                    } else {
-                        showToast('Gagal mengirim: ' + result.message, 'error');
-                    }
-                }).withFailureHandler((err) => {
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                    showToast('Error: ' + err, 'error');
-                }).sendBulkWhatsAppNotification(savedSettings.recipients, message, savedSettings.webhookUrl, savedSettings.apiToken);
-            } else {
-                // Demo mode
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                    showToast(`Demo Mode: Notifikasi akan dikirim ke ${savedSettings.recipients?.length || WA_CONFIG.defaultRecipients.length} nomor`, 'success');
-                    console.log('WhatsApp Message Preview:\n', message);
-                }, 1500);
-            }
-        }
-        
-        function buildNotificationMessage() {
-            const today = new Date();
-            const todayStr = today.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-            
-            // Collect notifications
-            const dasarHukum = db['dasar_hukum'] || [];
-            const resiko = db['identifikasi_resiko'] || [];
-            const audit = db['audit_sistem'] || [];
-            const bahan = db['daftar_bahan_halal'] || [];
-            const sumberdaya = db['sumberdaya'] || [];
-            
-            let criticalItems = [];
-            let warningItems = [];
-            
-            // Check Dasar Hukum - Kadaluarsa
-            dasarHukum.forEach(item => {
-                if (item.tgl_kadaluarsa) {
-                    const expDate = new Date(item.tgl_kadaluarsa);
-                    const diffDays = Math.ceil((expDate - today) / (1000 * 60 * 60 * 24));
-                    if (diffDays < 0) {
-                        criticalItems.push(`📄 ${item.no_peraturan} - Kadaluarsa ${Math.abs(diffDays)} hari`);
-                    } else if (diffDays <= 30) {
-                        warningItems.push(`📄 ${item.no_peraturan} - Akan kadaluarsa dalam ${diffDays} hari`);
-                    }
-                }
-            });
-            
-            // Check Risiko Kritis
-            resiko.forEach(item => {
-                const skor = calculateRiskScore(item.tingkat_dampak, item.probabilitas);
-                if (skor >= 7) {
-                    criticalItems.push(`⚠️ ${item.no_registrasi} - Risiko Kritis (Skor: ${skor})`);
-                }
-            });
-            
-            // Check Audit Terlambat
-            audit.forEach(item => {
-                if (item.status_audit !== 'Closed' && item.due_date) {
-                    const dueDate = new Date(item.due_date);
-                    const diffDays = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
-                    if (diffDays < 0) {
-                        criticalItems.push(`📋 ${item.no_registrasi} - Audit terlambat ${Math.abs(diffDays)} hari`);
-                    } else if (diffDays <= 7) {
-                        warningItems.push(`📋 ${item.no_registrasi} - Audit due dalam ${diffDays} hari`);
-                    }
-                }
-            });
-            
-            // Check Bahan Halal Kadaluarsa
-            bahan.forEach(item => {
-                if (item.tgl_kadaluarsa) {
-                    const expDate = new Date(item.tgl_kadaluarsa);
-                    const diffDays = Math.ceil((expDate - today) / (1000 * 60 * 60 * 24));
-                    if (diffDays < 0) {
-                        criticalItems.push(`🌾 ${item.nama_bahan} - SH Kadaluarsa`);
-                    } else if (diffDays <= 30) {
-                        warningItems.push(`🌾 ${item.nama_bahan} - SH akan kadaluarsa dalam ${diffDays} hari`);
-                    }
-                }
-            });
-            
-            // Check Sumberdaya - Maintenance
-            sumberdaya.forEach(item => {
-                if (item.tgl_maintenance_berikutnya) {
-                    const maintDate = new Date(item.tgl_maintenance_berikutnya);
-                    const diffDays = Math.ceil((maintDate - today) / (1000 * 60 * 60 * 24));
-                    if (diffDays < 0) {
-                        criticalItems.push(`🔧 ${item.jenis_sumberdaya} (${item.divisi}) - Maintenance terlambat`);
-                    } else if (diffDays <= 7) {
-                        warningItems.push(`🔧 ${item.jenis_sumberdaya} (${item.divisi}) - Maintenance dalam ${diffDays} hari`);
-                    }
-                }
-            });
-            
-            // Build message
-            let message = `🔔 *NOTIFIKASI e-SMM ISO 9001 & SJPH*
-━━━━━━━━━━━━━━━━━━━━━
-📅 ${todayStr}
-
-`;
-            
-            if (criticalItems.length > 0) {
-                message += `🚨 *PERHATIAN SEGERA (${criticalItems.length} item):*\n`;
-                criticalItems.slice(0, 10).forEach(item => {
-                    message += `• ${item}\n`;
-                });
-                message += '\n';
-            }
-            
-            if (warningItems.length > 0) {
-                message += `⚠️ *PERINGATAN (${warningItems.length} item):*\n`;
-                warningItems.slice(0, 10).forEach(item => {
-                    message += `• ${item}\n`;
-                });
-                message += '\n';
-            }
-            
-            if (criticalItems.length === 0 && warningItems.length === 0) {
-                message += `✅ *Semua sistem berjalan dengan baik!*\n\nTidak ada item kritis atau peringatan yang memerlukan perhatian.\n\n`;
-            }
-            
-            message += `━━━━━━━━━━━━━━━━━━━━━
-📊 *RINGKASAN:*
-• Dasar Hukum: ${dasarHukum.length} dokumen
-• Risiko & Peluang: ${resiko.length} item
-• Audit: ${audit.length} temuan
-• Bahan Halal: ${bahan.length} bahan
-• Sumberdaya: ${sumberdaya.length} item
-━━━━━━━━━━━━━━━━━━━━━
-_Dikirim otomatis oleh e-Sistem Manajemen_`;
-            
-            return message;
         }
 
         // ============================================
